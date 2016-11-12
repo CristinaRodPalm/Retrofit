@@ -1,6 +1,7 @@
 package palmer;
 
 import palmer.domain.Player;
+import palmer.domain.Position;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,7 +25,7 @@ public class RestAsync {
 
         PlayerService playerService = retrofit.create(PlayerService.class);
 
-        //GET ALL PLAYERS
+        // GET ALL PLAYERS
         Call<List<Player>> callGetAll = playerService.getAllPlayer();
         callGetAll.enqueue(new Callback<List<Player>>(){
             @Override
@@ -39,7 +40,7 @@ public class RestAsync {
             }
         });
 
-        //GET PLAYER id
+        // GET PLAYER id
         Call<Player> callGetID = playerService.getPlayerID(1L);
         callGetID.enqueue(new Callback<Player>() {
             @Override
@@ -53,6 +54,55 @@ public class RestAsync {
                 System.out.println("GET ALL PLAYERS --> ERROR \n"+ t.getMessage());
             }
         });
-    }
 
+        // POST
+        Player player = new Player("Grace", 66, 28, 84, Position.FORWARDS);
+        Call<Player> callCreatePlayer = playerService.createPlayer(player);
+        callCreatePlayer.enqueue(new Callback<Player>() {
+            @Override
+            public void onResponse(Call<Player> call, Response<Player> response) {
+                System.out.println("Code: "+response.code()+"\n"
+                +"CREATE PLAYER: "+response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Player> call, Throwable t) {
+                System.out.println("CREATE PLAYER --> ERROR \n"+ t.getMessage());
+            }
+        });
+
+        // DELETE
+        Call<Void> callDeletePlayer = playerService.deletePlayerID(6L); //grace, recien creada
+        callDeletePlayer.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                System.out.println("Code: "+response.code());
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                System.out.println("DELETE PLAYER --> ERROR \n"+ t.getMessage());
+            }
+        });
+
+        // PUT
+        // Creo un jugador para no editar ninguno
+        Player p = new Player("Melissa", 12, 8, 34, Position.PIVOT);
+        playerService.createPlayer(p);
+        p.setName("Modificado");
+        Call<Player> callUpdatePlayer = playerService.updatePlayer(p);
+        callUpdatePlayer.enqueue(new Callback<Player>() {
+            @Override
+            public void onResponse(Call<Player> call, Response<Player> response) {
+                System.out.println("Code: "+response.code()+"\n"
+                +"PUT: "+response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Player> call, Throwable t) {
+                System.out.println("PUT --> ERROR\n"+t.getMessage());
+            }
+        });
+
+    }
 }
