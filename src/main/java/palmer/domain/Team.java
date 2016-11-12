@@ -1,4 +1,4 @@
-package palmer;
+package palmer.domain;
 
 import java.time.LocalDate;
 

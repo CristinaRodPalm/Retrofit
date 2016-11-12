@@ -1,5 +1,8 @@
 package palmer;
 
+import palmer.domain.Player;
+import palmer.domain.Position;
+import palmer.domain.Statistic;
 import retrofit2.Call;
 import retrofit2.http.*;
 

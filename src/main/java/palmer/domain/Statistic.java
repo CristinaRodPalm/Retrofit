@@ -1,4 +1,4 @@
-package palmer;
+package palmer.domain;
 
 /**
  * Created by User on 06/11/2016.
