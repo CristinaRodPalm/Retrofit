@@ -35,8 +35,22 @@ public class RestAsync {
 
             @Override
             public void onFailure(Call<List<Player>> call, Throwable t) {
-                System.out.println("GET ALL PLAYERS --> ERROR \n"+
-                t.getMessage());
+                System.out.println("GET ALL PLAYERS --> ERROR \n"+ t.getMessage());
+            }
+        });
+
+        //GET PLAYER id
+        Call<Player> callGetID = playerService.getPlayerID(1L);
+        callGetID.enqueue(new Callback<Player>() {
+            @Override
+            public void onResponse(Call<Player> call, Response<Player> response) {
+                System.out.println("Code: "+response.code()+"\n"
+                +"GET PLAYER ID: "+response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Player> call, Throwable t) {
+                System.out.println("GET ALL PLAYERS --> ERROR \n"+ t.getMessage());
             }
         });
     }
