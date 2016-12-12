@@ -33,8 +33,9 @@ public class RestAsync {
         callGetAll.enqueue(new Callback<List<Player>>(){
             @Override
             public void onResponse(Call<List<Player>> call, Response<List<Player>> response) {
-                System.out.println("Code: "+response.code()+"\n"
-                +"GET ALL PLAYERS: "+response.body());
+                System.out.println("GET ALL PLAYERS \n " +
+                        "Code: "+response.code()+"\n"
+                        +response.body());
             }
 
             @Override
@@ -48,8 +49,9 @@ public class RestAsync {
         callGetID.enqueue(new Callback<Player>() {
             @Override
             public void onResponse(Call<Player> call, Response<Player> response) {
-                System.out.println("Code: "+response.code()+"\n"
-                +"GET PLAYER ID: "+response.body());
+                System.out.println("GET PLAYER ID \n" +
+                        "Code: "+response.code()+"\n"
+                        +response.body());
             }
 
             @Override
@@ -64,8 +66,9 @@ public class RestAsync {
         callCreatePlayer.enqueue(new Callback<Player>() {
             @Override
             public void onResponse(Call<Player> call, Response<Player> response) {
-                System.out.println("Code: "+response.code()+"\n"
-                +"CREATE PLAYER: "+response.body());
+                System.out.println("CREATE PLAYER \n" +
+                        "Code: "+response.code()+"\n"
+                        +response.body());
             }
 
             @Override
@@ -79,7 +82,8 @@ public class RestAsync {
         callDeletePlayer.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                System.out.println("Code: "+response.code());
+                System.out.println("DELETE PLAYER \n " +
+                        "Code: "+response.code());
             }
 
             @Override
@@ -97,8 +101,9 @@ public class RestAsync {
         callUpdatePlayer.enqueue(new Callback<Player>() {
             @Override
             public void onResponse(Call<Player> call, Response<Player> response) {
-                System.out.println("Code: "+response.code()+"\n"
-                +"PUT: "+response.body());
+                System.out.println("PUT PLAYER \n" +
+                        "Code: "+response.code()+"\n"
+                        +response.body());
             }
 
             @Override
